@@ -1,0 +1,85 @@
+  <app-navbar-admin></app-navbar-admin>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <h1>Danh Sách Người Dùng</h1>
+          </div>
+          <div class="col-sm-12">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a (click)="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i>   Đăng xuất</a></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Danh sách người dùng</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <td>Tên tài khoản</td>
+                    <td>Ngày tạo</td>
+                    <td>Tổng số bạn</td>
+                    <td>Trạng thái</td>
+                    <td></td>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let user of userDTOs, index as i">
+                    <td>{{i + 1}}</td>
+                    <td>{{user.userName}}</td>
+                    <td>{{user.dateCreated}}</td>
+                    <td>{{user.totalFriend}}</td>
+                    <td *ngIf="user.status === false">Đang Hoạt Động</td>
+                    <td *ngIf="user.status === true">Đang Bị Khóa</td>
+                    <td>
+                      <button class="btn btn-danger" *ngIf="!user.status"
+                              (click)="openModalBlockUser(templateBlockUser,user.id)">Khóa Tài Khoản
+                      </button>
+                      <button class="btn btn-primary" *ngIf="user.status" (click)="unlockUser(user.id, fromUser.value)">
+                        Mở Tài Khoản
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+
+<ng-template #templateBlockUser>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Bạn chắc chắn muốn khóa tài khoản này chứ?</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="blockUser(userId, fromUser.value)">Có</button>
+    <button type="button" class="btn btn-default" (click)="modalRef.hide()">Hủy</button>
+  </div>
+</ng-template>
+

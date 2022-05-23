@@ -1,0 +1,112 @@
+<app-navbar></app-navbar>
+<div class="hold-transition register-page">
+  <div class="register-box">
+    <div class="register-logo">
+<!--      <h2>Thay đổi thông tin cá nhân</h2>-->
+    </div>
+
+    <div class="card">
+      <div class="card-body register-card-body">
+        <h3 class="login-box-msg">Thông tin tài khoản</h3>
+
+        <form [formGroup]="updateUserInfoForm" (ngSubmit)="updateUserinfo()">
+          <div class="input-group mb-3">
+            <!--            <input type="text" class="form-control" (change)="usernameCheck($event)" formControlName="username" placeholder="Tên tài khoản">-->
+            <!--            <h5>Tên tài khoản:</h5>-->
+            <!--            <br>-->
+            <input type="text" class="form-control" value="{{updateUserInfoForm.controls.user.value.username}}"
+                   disabled>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <img src="http://localhost:8080/image/{{updateUserInfoForm.controls.avatar?.value}}" alt="">
+          </div>
+<!--          <div class="input-group mb-3">-->
+<!--            <input type="file" formControlName="avatar" class="form-control" multiple (change)="changeFile($event)">-->
+<!--            <div class="input-group-append">-->
+<!--              <div class="input-group-text">-->
+<!--                <span class="fas fa-edit"></span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+
+          <div class="input-group mb-3">
+            <input type="text" formControlName="fullName" class="form-control" placeholder="Tên đầy đủ">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+          <span class="col alert alert-danger" role="alert"
+                *ngIf="(updateUserInfoForm.controls.fullName?.touched || submitted) && updateUserInfoForm.controls.fullName?.errors?.required">Hãy nhập họ và tên!</span>
+            <span class="col alert alert-danger" role="alert"
+                  *ngIf="(updateUserInfoForm.controls.fullName?.touched || submitted) && updateUserInfoForm.controls.fullName?.errors?.pattern">Không nhập kí tự đặc biệt!</span>
+          </div>
+
+          <div class="input-group mb-3">
+            <input type="text" formControlName="address" class="form-control" placeholder="Địa chỉ">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-address-card"></span>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <span class="col alert alert-danger" role="alert"
+                    *ngIf="(updateUserInfoForm.controls.address?.touched || submitted) && updateUserInfoForm.controls.address?.errors?.required">Hãy nhập địa chỉ!</span>
+              <span class="col alert alert-danger" role="alert"
+                    *ngIf="(updateUserInfoForm.controls.address?.touched || submitted) && updateUserInfoForm.controls.address?.errors?.pattern">Không nhập kí tự đặc biệt!</span>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="tel" formControlName="phoneNumber" (change)="phoneCheck($event)" class="form-control"
+                   placeholder="Số điện thoại">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-phone"></span>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <span class="col alert alert-danger" role="alert"
+                    *ngIf="(updateUserInfoForm.controls.phoneNumber?.touched || submitted) && updateUserInfoForm.controls.phoneNumber?.errors?.required">Hãy nhập số điện thoại!</span>
+              <span class="col alert alert-danger" role="alert"
+                    *ngIf="(updateUserInfoForm.controls.phoneNumber?.touched || submitted) && updateUserInfoForm.controls.phoneNumber?.errors?.pattern">SĐT có 10 hoặc 11 số, bắt đầu bằng số 0!</span>
+              <span class="col alert alert-danger" role="alert"
+                    *ngIf="(updateUserInfoForm.controls.phoneNumber?.touched || submitted) && isExitPhone">SĐT đã tồn tại!</span>
+            </div>
+          </div>
+
+          <div class="input-group mb-3">
+            <input type="text" formControlName="interest" class="form-control" placeholder="Sở thích">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-heart"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+              <span class="col alert alert-danger" role="alert"
+                    *ngIf="(updateUserInfoForm.controls.interest?.touched || submitted) && updateUserInfoForm.controls.interest?.errors?.required">Hãy nhập sở thích!</span>
+            <span class="col alert alert-danger" role="alert"
+                  *ngIf="(updateUserInfoForm.controls.interest?.touched || submitted) && updateUserInfoForm.controls.interest?.errors?.pattern">Không nhập ký tự đặc biệt!</span>
+          </div>
+
+          <div class="row">
+            <!-- /.col -->
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary btn-block">Cập nhật thông tin</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+
+      </div>
+      <!-- /.form-box -->
+    </div><!-- /.card -->
+  </div>
+</div>

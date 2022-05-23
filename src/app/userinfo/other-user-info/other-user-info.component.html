@@ -1,0 +1,293 @@
+<!--<div class="se-pre-con"></div>-->
+<div class="theme-layout">
+  <section>
+    <div class="feature-photo">
+      <figure><img src="http://localhost:8080/image/{{backGroung}}" style="width: 100%; height: 465px"></figure>
+      <div class="container-fluid">
+        <div class="row merged">
+          <div class="col-lg-2 col-sm-3">
+            <div class="user-avatar">
+              <figure>
+                <img src="http://localhost:8080/image/{{avatar}}" alt="">
+              </figure>
+            </div>
+          </div>
+          <div class="col-lg-10 col-sm-9">
+            <div class="timeline-info">
+              <ul>
+                <li class="admin-name">
+                  <h5>{{fullName}}</h5>
+                </li>
+                <li>
+                  <a class="" routerLink="/home" title="" data-ripple="">trang chủ</a>
+                  <a class="" [routerLink]="['/friend/list/mutual', toId]" title="" data-ripple="">bạn bè</a>
+                  <a class="" href="timeline-videos.html" title="" data-ripple="">nhóm</a>
+                  <a class="" href="timeline-friends.html" title="" data-ripple="">bài viết</a>
+                </li>
+              </ul>
+              <button style="float: right;" (click)="openModalMessager(templateMessager)" class="btn btn-primary"><i
+                class="fa-brands fa-facebook-messenger"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- top area -->
+  <section>
+    <div class="gap gray-bg">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="row" id="page-contents">
+              <div class="col-lg-3">
+
+                <aside class="sidebar static">
+
+                  <div class="widget">
+                    <h4 class="widget-title">Shortcuts</h4>
+                    <ul class="naves">
+                      <li>
+                        <i class="fa-solid fa-house"></i>
+                        <a routerLink="/home" title="">Trang chủ</a>
+                      </li>
+                      <li>
+                        <i class="fa-solid fa-user-group"></i>
+                        <a href="inbox.html" title="">Bạn bè</a>
+                      </li>
+                      <li>
+                        <i class="fa-solid fa-people-group"></i>
+                        <a href="fav-page.html" title="">Nhóm</a>
+                      </li>
+
+                    </ul>
+                  </div>
+                </aside>
+              </div>
+              <div class="col-lg-6">
+                <div class="loadMore">
+                  <div class="central-meta item">
+                    <div class="card">
+                      <div class="card-body register-card-body">
+                        <h4>Thông tin tài khoản:</h4>
+                        <form [formGroup]="userInfoForm">
+                          <p>Tên user:</p>
+                          <div class="input-group mb-3">
+                            <input type="text" formControlName="username" class="form-control"
+                                   value="{{userInfoForm.controls.username.value}}"
+                                   disabled>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <p>Tên đầy đủ:</p>
+                          <div class="input-group mb-3">
+                            <input type="text" formControlName="fullName" class="form-control"
+                                   value="{{userInfoForm.controls.fullName.value}}"
+                                   disabled>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <p>Địa chỉ:</p>
+                          <div class="input-group mb-3">
+                            <input type="text" formControlName="address" class="form-control"
+                                   value="{{userInfoForm.controls.address.value}}"
+                                   disabled>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                <span class="fas fa-address-card"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <p>Số điện thoại:</p>
+                          <div class="input-group mb-3">
+                            <input type="tel" formControlName="phoneNumber" class="form-control"
+                                   value="{{userInfoForm.controls.phoneNumber.value}}"
+                                   disabled>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                <span class="fas fa-phone"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <p>Sở thích:</p>
+                          <div class="input-group mb-3">
+                            <input type="text" formControlName="interest" class="form-control"
+                                   value="{{userInfoForm.controls.interest.value}}"
+                                   disabled>
+                            <div class="input-group-append">
+                              <div class="input-group-text">
+                                <span class="fas fa-heart"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <!-- /.form-box -->
+                    </div><!-- /.card -->
+                  </div>
+
+                </div>
+              </div><!-- centerl meta -->
+
+              <div class="col-lg-3">
+                <aside class="sidebar static">
+                </aside>
+              </div><!-- sidebar -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-4">
+          <div class="widget">
+            <div class="foot-logo">
+              <div class="logo">
+                <a href="index-2.html" title=""><img src="images/logo.png" alt=""></a>
+              </div>
+              <p>
+                The trio took this simple idea and built it into the world’s leading carpooling platform.
+              </p>
+            </div>
+            <ul class="location">
+              <li>
+                <i class="ti-map-alt"></i>
+                <p>33 new montgomery st.750 san francisco, CA USA 94105.</p>
+              </li>
+              <li>
+                <i class="ti-mobile"></i>
+                <p>+1-56-346 345</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4">
+          <div class="widget">
+            <div class="widget-title"><h4>follow</h4></div>
+            <ul class="list-style">
+              <li><i class="fa fa-facebook-square"></i> <a href="https://web.facebook.com/shopcircut/"
+                                                           title="">facebook</a></li>
+              <li><i class="fa fa-twitter-square"></i><a href="https://twitter.com/login?lang=en" title="">twitter</a>
+              </li>
+              <li><i class="fa fa-instagram"></i><a href="https://www.instagram.com/?hl=en" title="">instagram</a></li>
+              <li><i class="fa fa-google-plus-square"></i> <a href="https://plus.google.com/discover"
+                                                              title="">Google+</a></li>
+              <li><i class="fa fa-pinterest-square"></i> <a href="https://www.pinterest.com/" title="">Pintrest</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4">
+          <div class="widget">
+            <div class="widget-title"><h4>Navigate</h4></div>
+            <ul class="list-style">
+              <li><a href="about.html" title="">about us</a></li>
+              <li><a href="contact.html" title="">contact us</a></li>
+              <li><a href="terms.html" title="">terms & Conditions</a></li>
+              <li><a href="#" title="">RSS syndication</a></li>
+              <li><a href="sitemap.html" title="">Sitemap</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4">
+          <div class="widget">
+            <div class="widget-title"><h4>useful links</h4></div>
+            <ul class="list-style">
+              <li><a href="#" title="">leasing</a></li>
+              <li><a href="#" title="">submit route</a></li>
+              <li><a href="#" title="">how does it work?</a></li>
+              <li><a href="#" title="">agent listings</a></li>
+              <li><a href="#" title="">view All</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4">
+          <div class="widget">
+            <div class="widget-title"><h4>download apps</h4></div>
+            <ul class="colla-apps">
+              <li><a href="https://play.google.com/store?hl=en" title=""><i class="fa fa-android"></i>android</a></li>
+              <li><a href="https://www.apple.com/lae/ios/app-store/" title=""><i class="ti-apple"></i>iPhone</a></li>
+              <li><a href="https://www.microsoft.com/store/apps" title=""><i class="fa fa-windows"></i>Windows</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer><!-- footer -->
+  <div class="bottombar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <span class="copyright"><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></span>
+          <i><img src="images/credit-cards.png" alt=""></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #templateMessager>
+  <div class="modal-header">
+    <div class="nearly-pepls">
+      <figure>
+        <a href="time-line.html" title=""><img src="http://localhost:8080/image/{{toUserAvatar}}"></a>
+      </figure>
+      <div class="pepl-info">
+        <h4><a href="time-line.html" title="">{{toUserFullName}}</a></h4>
+      </div>
+    </div>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <cdk-virtual-scroll-viewport itemSize="10" class="scrolling-container">
+      <ul class="we-comet" *ngFor="let messager of messagers">
+        <li *ngIf="messager.fromUser.user.id === currentUserId">
+          <!--          <div class="comet-avatar">-->
+          <!--            <img src="http://localhost:8080/image/{{messager.fromUser.avatar}}" style="width: 50px">-->
+          <!--          </div>-->
+          <div class="we-comment" style="background-color: #0a98dc">
+            <p style="color:whitesmoke;">
+              {{messager.content}}
+            </p>
+            <p style="color:whitesmoke;">{{messager.dateCreated}}</p>
+          </div>
+        </li>
+        <li *ngIf="messager.toUser.user.id === currentUserId">
+          <div class="comet-avatar">
+            <img src="http://localhost:8080/image/{{messager.fromUser.avatar}}" style="width: 50px">
+          </div>
+
+          <div class="we-comment">
+            <div class="coment-head">
+              <h5><a href="time-line.html" title="">{{messager.fromUser.fullName}}</a></h5>
+            </div>
+            <p>
+              {{messager.content}}
+            <p>{{messager.dateCreated}}</p>
+          </div>
+        </li>
+      </ul>
+    </cdk-virtual-scroll-viewport>
+
+
+  </div>
+
+  <div class="modal-footer">
+    <form [formGroup]="messagerForm" style="float: left">
+      <textarea formControlName="content" placeholder="Nhập tin nhắn"></textarea>
+    </form>
+    <button style="float: right;" type="button" class="btn btn-primary" (click)="createMessager()">Gửi</button>
+  </div>
+
+</ng-template>
