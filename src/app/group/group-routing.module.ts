@@ -8,6 +8,8 @@ import {NotificationGroupListComponent} from './notification-group-list/notifica
 import {GroupListMemberComponent} from './group-list-member/group-list-member.component';
 import {GroupListParticipationComponent} from './group-list-participation/group-list-participation.component';
 import {GroupListAddComponent} from './group-list-add/group-list-add.component';
+import {GroupAboutComponent} from './group-about/group-about.component';
+import {NotificationCheckStatusComponent} from './notification-check-status/notification-check-status.component';
 
 
 const routes: Routes = [
@@ -38,6 +40,14 @@ const routes: Routes = [
   {
     path: 'list/add',
     component: GroupListAddComponent
+  },
+  {
+    path: 'about/:id',
+    component: GroupAboutComponent
+  },
+  {
+    path: 'noti/list',
+    component: NotificationCheckStatusComponent
   }
 ];
 

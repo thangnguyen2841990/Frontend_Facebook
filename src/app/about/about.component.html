@@ -1,6 +1,4 @@
-<!--<div class="se-pre-con"></div>-->
 <div class="theme-layout">
-
   <div class="responsive-header">
     <div class="mh-head first Sticky">
 			<span class="mh-btns-left">
@@ -13,12 +11,6 @@
 				<a class="fa fa-sliders" href="#shoppingbag"></a>
 			</span>
     </div>
-    <!--    <div class="mh-head second">-->
-    <!--      <form class="mh-form">-->
-    <!--        <input placeholder="search" />-->
-    <!--        <a href="#/" class="fa fa-search"></a>-->
-    <!--      </form>-->
-    <!--    </div>-->
   </div><!-- responsive header -->
   <app-navbar></app-navbar>
   <section>
@@ -185,10 +177,10 @@
                                   <div class="coment-head">
                                     <h5><a href="time-line.html" title="">{{comment.userInfoPost.fullName}}</a></h5>
                                     <div *ngIf="currentUserId === comment.userInfoPost.user.id || currentUserId === post.userInfo.user.id" ngbDropdown style="float: right">
-                                      <button type="button" class="btn" id="dropdownBasic2" ngbDropdownToggle>
+                                      <button type="button" class="btn" id="dropdownBasic3" ngbDropdownToggle>
                                         ...
                                       </button>
-                                      <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                                      <div ngbDropdownMenu aria-labelledby="dropdownBasic3">
                                         <button *ngIf="currentUserId === comment.userInfoPost.user.id" class="button-coment" ngbDropdownItem (click)="openModalEditComment(templateEditComment, comment.id)"><i class="fa-solid fa-pen-to-square"></i>
                                         </button>
                                         <button class="button-coment" ngbDropdownItem (click)="openModalDeleteComment(templateDeleteComment, comment.id)"><i class="fa-solid fa-trash-can"></i>

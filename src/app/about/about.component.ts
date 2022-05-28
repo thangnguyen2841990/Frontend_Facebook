@@ -96,13 +96,12 @@ export class AboutComponent implements OnInit {
               private replyService: ReplyCommentService) {
     this.currentUserId = this.authenticationService.currentUserValue.id;
     this.findUserInfoByUserId(this.currentUserId);
-    this.getAllMessage();
-
   }
 
   ngOnInit() {
     this.getAllPostByUser();
     this.getStatus();
+    this.getAllMessage();
     this.getTotalMessage();
   }
 

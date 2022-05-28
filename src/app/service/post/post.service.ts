@@ -3,6 +3,7 @@ import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Post} from '../../model/post';
+import {PostGroup} from '../../model/post-group';
 
 const API_URL = `${environment.apiUrl}`;
 
@@ -26,6 +27,12 @@ export class PostService {
     return this.http.post<Post>(`${API_URL}/posts/${userId}`, post);
   }
 
+  savePostGroup(groupId , userId: number, post): Observable<Post> {
+    return this.http.post<Post>(`${API_URL}/postGroups/${groupId}/${userId}`, post);
+  }
+  getAllPostGroup(groupId): Observable<PostGroup[]> {
+    return this.http.get<PostGroup[]>(`${API_URL}/postGroups/${groupId}`);
+  }
   deletePost(id: number): Observable<Post> {
     return this.http.delete<Post>(`${API_URL}/posts/${id}`);
   }

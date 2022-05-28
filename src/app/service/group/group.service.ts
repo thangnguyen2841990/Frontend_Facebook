@@ -47,7 +47,7 @@ export class GroupService {
   }
 
   getAllGroupParticipation(currenUSerId): Observable<GroupMember[]> {
-    return this.http.get<GroupMember[]>(`${API_URL}/groupmembers/groups/${currenUSerId}`);
+    return this.http.get<GroupMember[]>(`${API_URL}/groupmembers/findGroup/${currenUSerId}`);
   }
 
   outGroup(groupId, currenUserId): Observable<GroupMember> {

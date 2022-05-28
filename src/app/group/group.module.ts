@@ -14,10 +14,12 @@ import { NotificationGroupListComponent } from './notification-group-list/notifi
 import { GroupListMemberComponent } from './group-list-member/group-list-member.component';
 import { GroupListParticipationComponent } from './group-list-participation/group-list-participation.component';
 import { GroupListAddComponent } from './group-list-add/group-list-add.component';
+import { GroupAboutComponent } from './group-about/group-about.component';
+import { NotificationCheckStatusComponent } from './notification-check-status/notification-check-status.component';
 
 
 @NgModule({
-  declarations: [GroupCreateComponent, GroupListComponent, NavGroupComponent, GroupOtherComponent, NotificationGroupListComponent, GroupListMemberComponent, GroupListParticipationComponent, GroupListAddComponent],
+  declarations: [GroupCreateComponent, GroupListComponent, NavGroupComponent, GroupOtherComponent, NotificationGroupListComponent, GroupListMemberComponent, GroupListParticipationComponent, GroupListAddComponent, GroupAboutComponent, NotificationCheckStatusComponent],
   imports: [
     CommonModule,
     GroupRoutingModule,

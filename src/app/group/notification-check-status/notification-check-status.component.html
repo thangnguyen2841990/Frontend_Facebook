@@ -1,4 +1,3 @@
-<!--<div class="se-pre-con"></div>-->
 <div class="theme-layout">
 
   <div class="responsive-header">
@@ -13,14 +12,11 @@
 				<a class="fa fa-sliders" href="#shoppingbag"></a>
 			</span>
     </div>
-    <!--    <div class="mh-head second">-->
-    <!--      <form class="mh-form">-->
-    <!--        <input placeholder="search" />-->
-    <!--        <a href="#/" class="fa fa-search"></a>-->
-    <!--      </form>-->
-    <!--    </div>-->
-  </div><!-- responsive header -->
-<app-nav-group></app-nav-group>
+
+  </div>
+
+  <app-nav-group></app-nav-group>
+
   <section>
     <div class="gap gray-bg">
       <div class="container-fluid">
@@ -35,28 +31,8 @@
                     <h4 class="widget-title">Shortcuts</h4>
                     <ul class="naves">
                       <li>
-                        <i class="fa-solid fa-house"></i>
+                        <i class="ti-clipboard"></i>
                         <a routerLink="/home" title="">Trang chủ</a>
-                      </li>
-                      <li>
-                        <i class="ti-files"></i>
-                        <a routerLink="/group/list/other" title="">Gợi ý cho bạn</a>
-                      </li>
-                      <li>
-                        <i class="fa-solid fa-people-group"></i>
-                        <a title="" routerLink="/group/list/notificationAddGroup">Đề nghị  vào nhóm</a>
-                      </li>
-                      <li>
-                        <i class="fa-solid fa-people-group"></i>
-                        <a title="" routerLink="/group/list/add">Lời mời vào nhóm</a>
-                      </li>
-                      <li>
-                        <i class="fa-solid fa-people-group"></i>
-                        <a routerLink="/group/list/group" title="">Nhóm đã tham gia</a>
-                      </li>
-                      <li>
-                        <i class="fa-solid fa-people-group"></i>
-                        <a  routerLink="/group/create">Tạo nhóm</a>
                       </li>
                     </ul>
                   </div>
@@ -66,22 +42,22 @@
                 <div class="loadMore">
                   <div class="central-meta">
                     <div class="groups">
-                      <span><i class="fa-solid fa-people-group"></i>Nhóm của bạn</span>
+                      <span><i class="fa-solid fa-people-group"></i>Duyệt bài viết của thành viên</span>
                     </div>
-                    <ul class="nearby-contct" *ngFor="let group of groups">
+                    <ul class="nearby-contct" *ngFor="let notificationGroup of notificationCheckStatus">
                       <li>
                         <div class="nearly-pepls">
                           <figure>
-                            <a href="time-line.html" title=""><img src="http://localhost:8080/image/{{group.avatar}}"></a>
+                            <a title=""><img src="http://localhost:8080/image/{{notificationGroup.postGroup.userInfo.avatar}}"></a>
                           </figure>
                           <div class="pepl-info">
-
-
-                            <h4><a routerLink="/group/about/{{group.id}}" title="">{{group.name}}({{group.groupStatus.name}})</a></h4>
-                            <button style="margin-left: 20px; float: right" class="btn btn-danger" (click)="openModalDelete(templateDeleteGroup, group.id)" >Xoá</button>
-                            <button style="float: right" class="btn btn-warning" (click)="openModalEdit(templateEditGroup, group.id)"><i class="fa-solid fa-pen-to-square"></i>Sửa</button>
-
-                            <span routerLink="/group/list/member/{{group.id}}">Danh sách thành viên</span>
+                            <h4><a [routerLink]="['/aboutUser', notificationGroup.postGroup.userInfo.user.id]" title="">{{notificationGroup.postGroup.userInfo.fullName}}</a></h4>
+                            <!--                                                        <span>{{notificationAddGroup.fromUser.address}}</span>-->
+                            <em (click)="openModalLookPost(templateEdit, notificationGroup.postGroup.postGroupId)">Xem bài viết</em>
+                            <div style="float: right">
+                              <button style="margin-right: 20px" class="btn btn-success" (click)="accepMember(notificationGroup.group.id, notificationGroup.fromUser.user.id, groupMember)">Đồng ý</button>
+                              <button class="btn btn-danger"  (click)="openModalDelete(templateDeleteNotification,notificationGroup.group.id, notificationGroup.fromUser.user.id)">Từ Chối</button>
+                            </div>
                           </div>
                         </div>
                       </li>
@@ -191,52 +167,44 @@
   </div>
 </div>
 
-
-<ng-template #templateDeleteGroup>
+<ng-template #templateDeleteNotification>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Bạn chắc chắn muốn xóa nhóm này chứ?</h4>
+    <h4 class="modal-title pull-left">Bạn chắc chắn muốn từ chối lời mời vào nhóm này chứ?</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">×</span>
     </button>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger" (click)="deleteGroup()"><i class="fa-solid fa-trash-can"></i>Xóa</button>
+    <button type="button" class="btn btn-danger" (click)="refuseMember(groupId, memberId)"><i class="fa-solid fa-trash-can"></i>Xóa</button>
     <button type="button" class="btn btn-default" (click)="modalRef.hide()">Đóng</button>
   </div>
 </ng-template>
 
-<ng-template #templateEditGroup>
+<ng-template #templateEdit>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Sửa thông tin Nhóm</h4>
+    <h4 class="modal-title pull-left">Chỉnh sửa bài viết</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">×</span>
     </button>
   </div>
-  <div class="modal-body">
-    <h5>Tên nhóm</h5>
-    <form [formGroup]="formGroup">
-      <textarea (change)="checkGroupName($event)" formControlName="name" placeholder="Nhập tên nhóm"></textarea>
-      <div class="input-group mb-3">
-        <span class="col alert alert-danger" role="alert" *ngIf="(formGroup.controls.name?.touched || submitted) && formGroup.controls.name?.errors?.required">Hãy nhập tên nhóm!</span>
-        <span class="col alert alert-danger" role="alert" *ngIf="(formGroup.controls.name?.touched || submitted) && formGroup.controls.name?.errors?.minlength">Tên nhóm tối thiểu là 6 ký tự!</span>
-        <span class="col alert alert-danger" role="alert" *ngIf="(formGroup.controls.name?.touched || submitted) && formGroup.controls.name?.errors?.maxlength">Tên nhóm tối đa là 30 ký tự!</span>
-        <span class="col alert alert-danger" role="alert" *ngIf="(formGroup.controls.name?.touched || submitted) && groupNameExit.status">Tên nhóm đã tồn tại!</span>
+    <div class="modal-body">
+
+      <div class="grid-img-edit" >
+        <div *ngFor="let image of listImages">
+          <img  src="http://localhost:8080/image/{{image.image}}">
+          <!--          <button (click)="openModalDeleteImage(templateDeleteImage, )">X</button>-->
+        </div>
       </div>
       <div class="mb-3">
-        <h5>Quyền nhóm</h5>
-        <select name="" id="" formControlName="statusId">
-          <option *ngFor="let sta of listStatus" [value]="sta.id">{{sta.name}}</option>
-        </select>
+        <h5>Nội dung bài viết</h5>
+        <textarea>{{content}}</textarea>
       </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="editGroup()">Chấp nhận</button>
-    <button type="button" class="btn btn-default" (click)="modalRef.hide()">Đóng</button>
-  </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-warning" (click)="updatePost()"><i class="fa-solid fa-pen-to-square"></i>Sửa</button>
+      <button type="button" class="btn btn-default" (click)="modalRef.hide()">Đóng</button>
+    </div>
 </ng-template>
-
-
 
 
 

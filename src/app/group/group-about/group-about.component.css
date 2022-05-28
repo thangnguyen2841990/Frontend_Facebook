@@ -1,0 +1,21 @@
+.grid-img {
+  column-count: 3; /* Số cột */
+  column-gap: 10px; /* Khoảng cách giữa các cột */
+}
+
+.grid-img img {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  margin-bottom: 15px;
+  break-inside: avoid;
+}
+.grid-img1 {
+  column-count: 2; /* Số cột */
+  column-gap: 10px; /* Khoảng cách giữa các cột */
+}
+.grid-img1 img {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  margin-bottom: 15px;
+  break-inside: avoid;
+}
